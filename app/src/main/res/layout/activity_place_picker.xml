@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.mlsdev.mapsappsample.PlacePickerActivity.PlacePickerViewModel" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_place_picker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.mlsdev.mapsappsample.PlacePickerActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/PlacesTextViewStyle"
+                android:text="@string/tv_place_name" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_place_name"
+                style="@style/PlacesTextViewStyle"
+                android:text="@{viewModel.placeName}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/PlacesTextViewStyle"
+                android:text="@string/tv_place_address" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_place_address"
+                style="@style/PlacesTextViewStyle"
+                android:text="@{viewModel.placeAddress}" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_pick_a_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="@{viewModel.onPickPlaceButtonClick}"
+            android:text="@string/btn_pick_a_place" />
+
+    </LinearLayout>
+
+</layout>
