@@ -24,20 +24,32 @@ android {
 }
 
 ext {
-    supportVersion = '25.0.0'
     googleServicesVersion = '9.6.0'
+    supportVersion = '25.0.0'
+    retrofitVersion = '2.1.0'
+    powermockVersion = '1.6.5'
+    dexmarkVersion = '1.2'
+    junitVersion = '4.12'
+    supportTestsLibVersion = '0.5'
+    espressoVersion = '2.2.2'
+    okhttpVersion = '3.4.1'
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
     compile "com.android.support:appcompat-v7:$supportVersion"
-    testCompile 'junit:junit:4.12'
+    testCompile "junit:junit:$junitVersion"
 
     // Maps, Places and Location
     compile "com.google.android.gms:play-services-maps:$googleServicesVersion"
     compile "com.google.android.gms:play-services-places:$googleServicesVersion"
     compile "com.google.android.gms:play-services-location:$googleServicesVersion"
+
+    // UI tests
+    androidTestCompile "junit:junit:$junitVersion"
+    androidTestCompile "com.android.support.test:runner:$supportTestsLibVersion"
+    androidTestCompile "com.android.support.test:rules:$supportTestsLibVersion"
+    androidTestCompile "com.android.support:support-annotations:$supportVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$espressoVersion"
 }
