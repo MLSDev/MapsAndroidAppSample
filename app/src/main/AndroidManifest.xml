@@ -23,7 +23,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_app_api_key" />
 
-        <activity android:name=".PlacePickerActivity"></activity>
+        <activity android:name=".PlacePickerActivity" />
+        <activity android:name=".BasicMapActivity"></activity>
     </application>
 
 </manifest>

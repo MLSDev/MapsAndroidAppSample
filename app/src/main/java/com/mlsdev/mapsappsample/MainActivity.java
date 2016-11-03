@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void onMapButtonClick(View view) {
+            startActivity(new Intent(MainActivity.this, BasicMapActivity.class));
         }
 
         public void onStaticImageButtonClick(View view) {
