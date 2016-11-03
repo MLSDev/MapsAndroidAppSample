@@ -18,6 +18,7 @@ public class PlacePickerActivity extends GoogleApiClientActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        showBackButton(true);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_place_picker);
         binding.setViewModel(new PlacePickerViewModel());
         startPlacesPickerActivity();
