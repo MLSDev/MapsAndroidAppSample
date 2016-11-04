@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">Maps App Sample</string>
 
+    <string name="title_place_picker">Place Picker</string>
+    <string name="title_google_map">Google Map</string>
+
     <string name="google_app_api_key">AIzaSyA6XrAUKFLeA30Bt6m2uWe0DtFdk9r6Nuc</string>
     <string name="btn_pick_a_place">pick a place</string>
     <string name="btn_open_map">open map</string>

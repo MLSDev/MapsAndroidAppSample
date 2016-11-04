@@ -23,6 +23,6 @@ public class BasicMapActivity extends BaseActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.759035, -73.980115)).title("Marker"));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(40.759035, -73.980115)).title("MLSDev"));
     }
 }
