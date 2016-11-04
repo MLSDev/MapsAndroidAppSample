@@ -24,7 +24,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     public void showAlertDialog(@Nullable String title, @NonNull String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialog);
         builder.setTitle(title)
                 .setMessage(message)
                 .setPositiveButton("OK", null);
