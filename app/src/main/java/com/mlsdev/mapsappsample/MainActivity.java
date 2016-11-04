@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         public void onStaticImageButtonClick(View view) {
+            startActivity(new Intent(MainActivity.this, StaticImageMapActivity.class));
         }
 
     }

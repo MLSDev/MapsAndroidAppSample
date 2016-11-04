@@ -29,6 +29,9 @@
         <activity
             android:name=".BasicMapActivity"
             android:label="@string/title_google_map" />
+        <activity
+            android:name=".StaticImageMapActivity"
+            android:label="@string/title_static_map" />
     </application>
 
 </manifest>

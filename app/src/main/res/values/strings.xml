@@ -11,4 +11,9 @@
     <string name="tv_place_name">Place name</string>
     <string name="tv_place_address">Place address</string>
     <string name="tv_place_type">Place type</string>
+    <string name="title_static_map">Static map</string>
+    <string name="hint_center">center</string>
+    <string name="tv_scale">scale</string>
+    <string name="tv_zoom">zoom</string>
+    <string name="btn_get_image_map">get image map</string>
 </resources>

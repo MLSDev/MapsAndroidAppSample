@@ -1,5 +1,8 @@
 package com.mlsdev.mapsappsample;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
@@ -18,6 +21,15 @@ public class BaseActivity extends AppCompatActivity {
             getSupportActionBar().setHomeButtonEnabled(show);
             getSupportActionBar().setDisplayHomeAsUpEnabled(show);
         }
+    }
+
+    public void showAlertDialog(@Nullable String title, @NonNull String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AppTheme);
+        builder.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton("OK", null);
+
+        builder.create().show();
     }
 
 }
