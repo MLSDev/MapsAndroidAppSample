@@ -1,5 +1,6 @@
 package com.mlsdev.mapsappsample;
 
+import android.Manifest;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.mlsdev.mapsappsample.databinding.ActivityMainBinding;
+import com.tbruyelle.rxpermissions.RxPermissions;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -16,7 +18,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setViewModel(new MainViewModel());
+        getLocationPermission();
     }
+
+    private void getLocationPermission() {
+        RxPermissions.getInstance(this)
+                .request(Manifest.permission.ACCESS_FINE_LOCATION)
+                .subscribe(granted -> {
+                    if (!granted)
+                        MainActivity.this.finish();
+                });
+    }
+
 
     public class MainViewModel {
 
