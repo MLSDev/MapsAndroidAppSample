@@ -46,5 +46,13 @@
             android:onClick="@{viewModel.onStaticImageButtonClick}"
             android:text="@string/btn_static_image" />
 
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_place_suggestions"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_place_suggestions"
+            android:onClick="@{viewModel.onPlaceSuggestionsButtonClick}"
+            android:text="@string/btn_place_suggestions" />
+
     </LinearLayout>
 </layout>

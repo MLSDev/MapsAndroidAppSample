@@ -45,5 +45,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, StaticImageMapActivity.class));
         }
 
+        public void onPlaceSuggestionsButtonClick(View view) {
+            startActivity(new Intent(MainActivity.this, PlaceSuggestionsActivity.class));
+        }
+
     }
 }

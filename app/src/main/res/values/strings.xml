@@ -3,6 +3,7 @@
 
     <string name="title_place_picker">Place Picker</string>
     <string name="title_google_map">Google Map</string>
+    <string name="title_place_suggestions">Place Suggestions</string>
 
     <string name="google_app_api_key">AIzaSyA6XrAUKFLeA30Bt6m2uWe0DtFdk9r6Nuc</string>
     <string name="btn_pick_a_place">pick a place</string>
@@ -17,6 +18,7 @@
     <string name="tv_zoom">zoom</string>
     <string name="btn_get_image_map">get image map</string>
     <string name="tv_map_type">map type</string>
+    <string name="btn_place_suggestions">place suggestions</string>
 
     <string-array name="map_type_array">
         <item>roadmap</item>
