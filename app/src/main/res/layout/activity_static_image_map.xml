@@ -38,6 +38,13 @@
                     android:id="@+id/sb_zoom"
                     style="@style/SeekBarStyle"
                     android:max="21" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_zoom_progress"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@{viewModel.zoomProgress}" />
             </LinearLayout>
 
             <LinearLayout
@@ -51,7 +58,32 @@
                 <android.support.v7.widget.AppCompatSeekBar
                     android:id="@+id/sb_scale"
                     style="@style/SeekBarStyle"
-                    android:max="4" />
+                    android:max="2" />
+
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/tv_scale_progress"
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text="@{viewModel.scaleProgress}" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/SeekBarStyleWrapperStyle"
+                android:layout_marginTop="@dimen/activity_vertical_margin">
+
+                <android.support.v7.widget.AppCompatTextView
+                    style="@style/LabelTextViewStyle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="with a marker" />
+
+                <android.support.v7.widget.AppCompatCheckBox
+                    android:id="@+id/cb_add_marker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
             </LinearLayout>
 
             <android.support.v7.widget.AppCompatEditText

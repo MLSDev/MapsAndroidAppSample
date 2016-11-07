@@ -10,5 +10,6 @@ public class Constants {
     public static final String KEY = "key";
     public static final String ZOOM = "zoom";
     public static final String MAP_TYPE = "maptype";
+    public static final String MARKERS = "markers";
     // endregion
 }
