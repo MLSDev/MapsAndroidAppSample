@@ -16,4 +16,12 @@
     <string name="tv_scale">scale</string>
     <string name="tv_zoom">zoom</string>
     <string name="btn_get_image_map">get image map</string>
+    <string name="tv_map_type">map type</string>
+
+    <string-array name="map_type_array">
+        <item>roadmap</item>
+        <item>satellite</item>
+        <item>terrain</item>
+        <item>hybrid</item>
+    </string-array>
 </resources>

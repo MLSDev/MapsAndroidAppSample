@@ -55,11 +55,13 @@ public class StaticImageMapActivity extends BaseActivity {
                 return;
             }
 
+            String mapType = (String) binding.spMapTypes.getSelectedItem();
+
             Map<String, String> params = new ArrayMap<>();
             params.put(CENTER, binding.etCenter.getText().toString());
             params.put(ZOOM, String.valueOf(binding.sbZoom.getProgress()));
-            params.put(SIZE, "300x550");
-            params.put(MAP_TYPE, "roadmap");
+            params.put(SIZE, "550x300");
+            params.put(MAP_TYPE, mapType);
             params.put(SCALE, String.valueOf(binding.sbScale.getProgress()));
             if (binding.cbAddMarker.isChecked()) {
                 String markerPlace = binding.etCenter.getText().toString();
@@ -74,5 +76,7 @@ public class StaticImageMapActivity extends BaseActivity {
         }
 
     }
+
+
 
 }
