@@ -8,8 +8,7 @@
             type="com.mlsdev.mapsappsample.StaticImageMapActivity.ViewModel" />
     </data>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,8 +16,7 @@
             android:id="@+id/activity_satatic_image_map"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:context="com.mlsdev.mapsappsample.StaticImageMapActivity">
+            android:orientation="vertical">
 
             <android.support.v7.widget.AppCompatImageView
                 android:id="@+id/iv_static_map"
