@@ -16,8 +16,6 @@ import com.mlsdev.mapsappsample.GoogleApiClientActivity;
 import com.mlsdev.mapsappsample.R;
 import com.mlsdev.mapsappsample.databinding.ActivityPlaceSuggestionsBinding;
 
-import java.util.ArrayList;
-
 public class PlaceSuggestionsActivity extends GoogleApiClientActivity {
     private ActivityPlaceSuggestionsBinding binding;
     private PlacesViewModel viewModel;
@@ -34,7 +32,7 @@ public class PlaceSuggestionsActivity extends GoogleApiClientActivity {
         binding.setViewModel(viewModel);
         binding.etSearch.addTextChangedListener(new OnSearchTextChangedListener());
 
-        placesAdapter = new PlacesAdapter();
+        placesAdapter = new PlacesAdapter(viewModel);
         binding.rvPlacesSuggestions.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         binding.rvPlacesSuggestions.setAdapter(placesAdapter);
 
@@ -74,11 +72,12 @@ public class PlaceSuggestionsActivity extends GoogleApiClientActivity {
             binding.btnClearSearchText.setVisibility(editable.length() > 0 ? View.VISIBLE : View.INVISIBLE);
 
             if (editable.length() == 0)
-                placesAdapter.setData(new ArrayList<>());
+                placesAdapter.clearData();
 
-            if (editable.length() > 2) {
+            if (editable.length() > 2 && !viewModel.isItemSelected())
                 viewModel.searchPlaces(editable.toString());
-            }
+
+            binding.etSearch.setSelection(editable.length());
         }
     }
 }

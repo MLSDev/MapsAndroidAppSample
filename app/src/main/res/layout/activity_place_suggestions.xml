@@ -56,9 +56,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:text="@{viewModel.searchFieldValue}"
                     android:layout_alignTop="@+id/imageButton"
-                    android:hint="@string/hint_search" />
+                    android:hint="@string/hint_search"
+                    android:maxLines="2"
+                    android:text="@{viewModel.searchFieldValue}" />
             </android.support.design.widget.TextInputLayout>
 
             <ImageButton
@@ -70,8 +71,8 @@
                 android:layout_marginTop="30dp"
                 android:background="@android:color/transparent"
                 android:onClick="@{viewModel.onClearSearchFieldButtonClick}"
-                android:visibility="invisible"
-                android:src="@mipmap/ic_cancel" />
+                android:src="@mipmap/ic_cancel"
+                android:visibility="invisible" />
 
 
         </RelativeLayout>

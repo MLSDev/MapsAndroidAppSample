@@ -14,6 +14,11 @@ import java.util.List;
 
 public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder> {
     private List<String> places = new ArrayList<>();
+    private OnItemClickListener onItemClickListener;
+
+    public PlacesAdapter(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 
     @Override
     public PlacesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -24,7 +29,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
                 false
         );
 
-        PlaceViewModel viewModel = new PlaceViewModel();
+        PlaceViewModel viewModel = new PlaceViewModel(onItemClickListener);
         binding.setViewModel(viewModel);
         return new ViewHolder(binding.getRoot(), viewModel);
     }
@@ -50,6 +55,11 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
 
     public void setData(List<String> places) {
         this.places = places;
+        notifyDataSetChanged();
+    }
+
+    public void clearData() {
+        places.clear();
         notifyDataSetChanged();
     }
 }

@@ -19,9 +19,10 @@ import com.mlsdev.mapsappsample.databinding.ActivityPlaceSuggestionsBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlacesViewModel extends BaseObservable {
+public class PlacesViewModel extends BaseObservable implements OnItemClickListener {
     private ActivityPlaceSuggestionsBinding binding;
     private GoogleApiClient googleApiClient;
+    private boolean isItemSelected;
     public final ObservableField<String> searchFieldValue;
 
     public PlacesViewModel(ActivityPlaceSuggestionsBinding binding, GoogleApiClient googleApiClient) {
@@ -35,6 +36,7 @@ public class PlacesViewModel extends BaseObservable {
     }
 
     public void searchPlaces(String value) {
+        isItemSelected = false;
         AutocompleteFilter autocompleteFilter = new AutocompleteFilter.Builder()
                 .setTypeFilter(Place.TYPE_STREET_ADDRESS)
                 .build();
@@ -57,5 +59,16 @@ public class PlacesViewModel extends BaseObservable {
                         Log.e("PLACES_API", "Error: Places.GeoDataApi.getAutocompletePredictions()");
                     }
                 });
+    }
+
+    @Override
+    public void onItemClick(String placeFullText) {
+        isItemSelected = true;
+        ((PlacesAdapter) binding.rvPlacesSuggestions.getAdapter()).clearData();
+        searchFieldValue.set(placeFullText);
+    }
+
+    public boolean isItemSelected() {
+        return isItemSelected;
     }
 }
