@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.mlsdev.mapsappsample.databinding.ActivityMainBinding;
+import com.mlsdev.mapsappsample.placesuggestions.PlaceSuggestionsActivity;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 public class MainActivity extends AppCompatActivity {

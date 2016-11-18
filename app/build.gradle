@@ -31,7 +31,7 @@ android {
 
 ext {
     googleServicesVersion = '9.6.0'
-    supportVersion = '25.0.0'
+    supportVersion = '25.0.1'
     retrofitVersion = '2.1.0'
     powermockVersion = '1.6.5'
     dexmarkVersion = '1.2'
@@ -44,6 +44,9 @@ ext {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile "com.android.support:appcompat-v7:$supportVersion"
+    compile "com.android.support:design:$supportVersion"
+    compile "com.android.support:cardview-v7:$supportVersion"
+    compile "com.android.support:recyclerview-v7:$supportVersion"
     testCompile "junit:junit:$junitVersion"
 
     // Maps, Places and Location

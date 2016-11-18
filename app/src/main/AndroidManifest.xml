@@ -33,7 +33,7 @@
             android:name=".StaticImageMapActivity"
             android:label="@string/title_static_map" />
         <activity
-            android:name=".PlaceSuggestionsActivity"
+            android:name=".placesuggestions.PlaceSuggestionsActivity"
             android:label="@string/title_place_suggestions" />
     </application>
 
