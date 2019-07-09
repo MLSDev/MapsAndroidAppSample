@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.mlsdev.mapsappsample.databinding.ActivityMainBinding
+import com.mlsdev.mapsappsample.markerclustering.MarkerClusteringActivity
 import com.mlsdev.mapsappsample.placesuggestions.PlaceSuggestionsActivity
 import com.tbruyelle.rxpermissions.RxPermissions
 
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.buttonClusterMarkers.setOnClickListener {
-
+            startActivity(Intent(this, MarkerClusteringActivity::class.java))
         }
 
         getLocationPermission()
