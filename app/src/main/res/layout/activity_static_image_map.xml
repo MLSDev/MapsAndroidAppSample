@@ -131,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:onClick="@{viewModel.onGetImageMapButtonClick}"
+                android:onClick="@{() -> viewModel.onGetImageMapButtonClick()}"
                 android:text="@string/btn_get_image_map" />
 
         </LinearLayout>

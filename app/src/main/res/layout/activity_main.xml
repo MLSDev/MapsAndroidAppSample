@@ -44,5 +44,12 @@
             android:drawableStart="@mipmap/ic_place_suggestions"
             android:text="@string/btn_place_suggestions" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_cluster_markers"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_cluster_markers"
+            android:text="@string/label_marker_clustering" />
+
     </LinearLayout>
 </layout>

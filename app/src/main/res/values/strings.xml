@@ -20,6 +20,7 @@
     <string name="tv_map_type">map type</string>
     <string name="btn_place_suggestions">place suggestions</string>
     <string name="hint_search">Search</string>
+    <string name="label_marker_clustering">Marker Clustering</string>
 
     <string-array name="map_type_array">
         <item>roadmap</item>
