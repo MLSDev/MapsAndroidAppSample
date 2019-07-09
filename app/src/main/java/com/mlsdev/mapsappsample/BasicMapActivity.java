@@ -17,8 +17,7 @@ public class BasicMapActivity extends BaseActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_basic_map);
         showBackButton(true);
 
-        SupportMapFragment mapFragment =
-                (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 

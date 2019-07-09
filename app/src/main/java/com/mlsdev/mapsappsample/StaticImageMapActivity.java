@@ -1,10 +1,10 @@
 package com.mlsdev.mapsappsample;
-
-import android.databinding.DataBindingUtil;
-import android.databinding.ObservableField;
 import android.os.Bundle;
-import android.support.v4.util.ArrayMap;
+import android.util.ArrayMap;
 import android.view.View;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ObservableField;
 
 import com.bumptech.glide.Glide;
 import com.mlsdev.mapsappsample.databinding.ActivityStaticImageMapBinding;

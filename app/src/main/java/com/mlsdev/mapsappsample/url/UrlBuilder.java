@@ -1,7 +1,8 @@
 package com.mlsdev.mapsappsample.url;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import java.util.Map;
 

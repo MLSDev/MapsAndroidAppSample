@@ -1,12 +1,14 @@
 package com.mlsdev.mapsappsample.placesuggestions;
 
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
@@ -27,13 +29,13 @@ public class PlaceSuggestionsActivity extends GoogleApiClientActivity {
         super.onCreate(savedInstanceState);
         showBackButton(true);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_place_suggestions);
-        viewModel = new PlacesViewModel(binding, googleApiClient);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_place_suggestions, null);
+        viewModel = new PlacesViewModel(googleApiClient);
         binding.setViewModel(viewModel);
         binding.etSearch.addTextChangedListener(new OnSearchTextChangedListener());
 
         placesAdapter = new PlacesAdapter(viewModel);
-        binding.rvPlacesSuggestions.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        binding.rvPlacesSuggestions.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         binding.rvPlacesSuggestions.setAdapter(placesAdapter);
 
         PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)
@@ -53,6 +55,7 @@ public class PlaceSuggestionsActivity extends GoogleApiClientActivity {
             }
         });
 
+        binding.btnClearSearchText.setOnClickListener(view -> binding.etSearch.setText(""));
     }
 
     public class OnSearchTextChangedListener implements TextWatcher {

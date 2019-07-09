@@ -1,10 +1,10 @@
 package com.mlsdev.mapsappsample;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.databinding.ObservableField;
 import android.os.Bundle;
-import android.view.View;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ObservableField;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
@@ -22,6 +22,8 @@ public class PlacePickerActivity extends GoogleApiClientActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_place_picker);
         binding.setViewModel(new PlacePickerViewModel());
         startPlacesPickerActivity();
+
+        binding.btnPickAPlace.setOnClickListener(view -> startPlacesPickerActivity());
     }
 
     private void startPlacesPickerActivity() {
@@ -50,10 +52,6 @@ public class PlacePickerActivity extends GoogleApiClientActivity {
         public PlacePickerViewModel() {
             placeName = new ObservableField<>();
             placeAddress = new ObservableField<>();
-        }
-
-        public void onPickPlaceButtonClick(View view) {
-            startPlacesPickerActivity();
         }
 
         public void setData(Place place) {

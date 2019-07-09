@@ -1,7 +1,8 @@
 package com.mlsdev.mapsappsample.listener;
 
-import android.databinding.ObservableField;
 import android.widget.SeekBar;
+
+import androidx.databinding.ObservableField;
 
 public class OnSeekBarListener implements SeekBar.OnSeekBarChangeListener {
     private final ObservableField<String> progress;

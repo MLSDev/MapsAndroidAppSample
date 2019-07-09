@@ -1,13 +1,10 @@
 apply plugin: 'com.android.application'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.mlsdev.mapsappsample"
-        minSdkVersion 18
-        targetSdkVersion 25
+        minSdkVersion 19
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -19,53 +16,47 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     dataBinding {
         enabled = true
     }
 
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
-    }
 }
 
 ext {
-    googleServicesVersion = '9.6.0'
-    supportVersion = '25.0.1'
     retrofitVersion = '2.1.0'
     powermockVersion = '1.6.5'
     dexmarkVersion = '1.2'
     junitVersion = '4.12'
-    supportTestsLibVersion = '0.5'
-    espressoVersion = '2.2.2'
     okhttpVersion = '3.4.1'
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$supportVersion"
-    compile "com.android.support:design:$supportVersion"
-    compile "com.android.support:cardview-v7:$supportVersion"
-    compile "com.android.support:recyclerview-v7:$supportVersion"
-    testCompile "junit:junit:$junitVersion"
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation "junit:junit:$junitVersion"
+
+    def androidx_version = '1.0.0'
+    def androidx_appcompat_version = '1.0.2'
+    implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
+    implementation "androidx.cardview:cardview:$androidx_version"
+    implementation "androidx.recyclerview:recyclerview:$androidx_version"
+    implementation "com.google.android.material:material:$androidx_version"
 
     // Maps, Places and Location
-    compile "com.google.android.gms:play-services-maps:$googleServicesVersion"
-    compile "com.google.android.gms:play-services-places:$googleServicesVersion"
-    compile "com.google.android.gms:play-services-location:$googleServicesVersion"
+    def googleServicesVersion = '17.0.0'
+    implementation "com.google.android.gms:play-services-maps:$googleServicesVersion"
+    implementation "com.google.android.gms:play-services-places:$googleServicesVersion"
+    implementation "com.google.android.gms:play-services-location:$googleServicesVersion"
 
-    // UI tests
-    androidTestCompile "junit:junit:$junitVersion"
-    androidTestCompile "com.android.support.test:runner:$supportTestsLibVersion"
-    androidTestCompile "com.android.support.test:rules:$supportTestsLibVersion"
-    androidTestCompile "com.android.support:support-annotations:$supportVersion"
-    androidTestCompile "com.android.support.test.espresso:espresso-intents:$espressoVersion"
-    androidTestCompile "com.android.support.test.espresso:espresso-core:$espressoVersion"
 
-    compile 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
 
     // RxJava
-    compile 'io.reactivex:rxjava:1.1.6'
-    compile 'io.reactivex:rxandroid:1.2.1'
-    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.8.0@aar'
+    implementation 'io.reactivex:rxjava:1.1.6'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.8.0@aar'
 }

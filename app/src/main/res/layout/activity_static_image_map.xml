@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v7.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_static_map"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -35,13 +35,13 @@
                     style="@style/SeekBarStyleWrapperStyle"
                     android:gravity="start">
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/tv_map_type"
                         android:textSize="21sp" />
 
-                    <android.support.v7.widget.AppCompatSpinner
+                    <androidx.appcompat.widget.AppCompatSpinner
                         android:id="@+id/sp_map_types"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -54,16 +54,16 @@
                     style="@style/SeekBarStyleWrapperStyle"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         style="@style/LabelTextViewStyle"
                         android:text="@string/tv_zoom" />
 
-                    <android.support.v7.widget.AppCompatSeekBar
+                    <androidx.appcompat.widget.AppCompatSeekBar
                         android:id="@+id/sb_zoom"
                         style="@style/SeekBarStyle"
                         android:max="21" />
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_zoom_progress"
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
@@ -75,16 +75,16 @@
                     style="@style/SeekBarStyleWrapperStyle"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         style="@style/LabelTextViewStyle"
                         android:text="@string/tv_scale" />
 
-                    <android.support.v7.widget.AppCompatSeekBar
+                    <androidx.appcompat.widget.AppCompatSeekBar
                         android:id="@+id/sb_scale"
                         style="@style/SeekBarStyle"
                         android:max="2" />
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tv_scale_progress"
                         android:layout_width="20dp"
                         android:layout_height="wrap_content"
@@ -96,14 +96,14 @@
                     style="@style/SeekBarStyleWrapperStyle"
                     android:layout_marginTop="@dimen/activity_vertical_margin">
 
-                    <android.support.v7.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         style="@style/LabelTextViewStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="with a marker" />
 
-                    <android.support.v7.widget.AppCompatCheckBox
+                    <androidx.appcompat.widget.AppCompatCheckBox
                         android:id="@+id/cb_add_marker"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -111,16 +111,22 @@
 
                 </LinearLayout>
 
-                <android.support.v7.widget.AppCompatEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:hint="@string/hint_center" />
+                </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
-            <android.support.v7.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_get_image_map"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

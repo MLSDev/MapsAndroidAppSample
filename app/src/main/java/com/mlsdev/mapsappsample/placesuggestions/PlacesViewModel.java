@@ -1,10 +1,11 @@
 package com.mlsdev.mapsappsample.placesuggestions;
 
-import android.databinding.BaseObservable;
-import android.databinding.ObservableField;
-import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.BaseObservable;
+import androidx.databinding.ObservableField;
+import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallbacks;
@@ -14,25 +15,20 @@ import com.google.android.gms.location.places.AutocompletePrediction;
 import com.google.android.gms.location.places.AutocompletePredictionBuffer;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.Places;
-import com.mlsdev.mapsappsample.databinding.ActivityPlaceSuggestionsBinding;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlacesViewModel extends BaseObservable implements OnItemClickListener {
-    private ActivityPlaceSuggestionsBinding binding;
     private GoogleApiClient googleApiClient;
     private boolean isItemSelected;
     public final ObservableField<String> searchFieldValue;
+    public MutableLiveData<List<String>> placesLiveData = new MutableLiveData<>();
 
-    public PlacesViewModel(ActivityPlaceSuggestionsBinding binding, GoogleApiClient googleApiClient) {
-        this.binding = binding;
+    public PlacesViewModel(GoogleApiClient googleApiClient) {
         this.googleApiClient = googleApiClient;
         searchFieldValue = new ObservableField<>();
-    }
-
-    public void onClearSearchFieldButtonClick(View view) {
-        binding.etSearch.setText("");
     }
 
     public void searchPlaces(String value) {
@@ -51,7 +47,7 @@ public class PlacesViewModel extends BaseObservable implements OnItemClickListen
 
                         autocompletePredictions.release();
 
-                        ((PlacesAdapter) binding.rvPlacesSuggestions.getAdapter()).setData(placesFullTextList);
+                        placesLiveData.postValue(placesFullTextList);
                     }
 
                     @Override
@@ -64,7 +60,7 @@ public class PlacesViewModel extends BaseObservable implements OnItemClickListen
     @Override
     public void onItemClick(String placeFullText) {
         isItemSelected = true;
-        ((PlacesAdapter) binding.rvPlacesSuggestions.getAdapter()).clearData();
+        placesLiveData.postValue(Collections.emptyList());
         searchFieldValue.set(placeFullText);
     }
 

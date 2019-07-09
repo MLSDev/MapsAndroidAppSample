@@ -8,7 +8,7 @@
             type="com.mlsdev.mapsappsample.placesuggestions.PlaceViewModel" />
     </data>
 
-    <android.support.v7.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/tv_place_item_value"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
