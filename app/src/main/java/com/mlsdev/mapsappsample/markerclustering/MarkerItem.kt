@@ -15,9 +15,17 @@ data class MarkerItem(
         val markerDescriptor: String?
 ) : ClusterItem {
 
+    var type: Type = Type.LABORATORY
+
     override fun getSnippet(): String = markerDescriptor ?: ""
 
     override fun getTitle(): String = markerTitle ?: ""
 
     override fun getPosition(): LatLng = LatLng(lat, lng)
+
+    enum class Type {
+        VACCINATION,
+        LABORATORY,
+        HEALTHCARE_CENTER
+    }
 }
