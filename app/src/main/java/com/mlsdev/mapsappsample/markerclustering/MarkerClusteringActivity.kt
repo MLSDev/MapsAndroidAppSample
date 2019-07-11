@@ -10,6 +10,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
@@ -22,7 +23,12 @@ import com.mlsdev.mapsappsample.databinding.LayoutMarkersClusterBinding
 import com.mlsdev.mapsappsample.utils.DrawableToBitmapDecoder
 import kotlin.random.Random
 
-class MarkerClusteringActivity : BaseActivity(), OnMapReadyCallback {
+class MarkerClusteringActivity :
+        BaseActivity(),
+        OnMapReadyCallback,
+        ClusterManager.OnClusterClickListener<MarkerItem>,
+        ClusterManager.OnClusterItemClickListener<MarkerItem> {
+
     lateinit var binding: ActivityMarkerClusteringBinding
     lateinit var viewModel: MarkerClusteringViewModel
     lateinit var clusterManager: ClusterManager<MarkerItem>
@@ -55,8 +61,9 @@ class MarkerClusteringActivity : BaseActivity(), OnMapReadyCallback {
             it.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(51.503186, -0.126446), 10f))
             clusterManager = ClusterManager(this, it)
             clusterManager.renderer = PrimaryMarkerRenderer(it, clusterManager)
+            clusterManager.setOnClusterClickListener(this)
             it.setOnCameraIdleListener(clusterManager)
-
+            it.setOnMarkerClickListener(clusterManager)
             setupMarkers()
         }
     }
@@ -94,6 +101,33 @@ class MarkerClusteringActivity : BaseActivity(), OnMapReadyCallback {
             return cluster?.size ?: 0 > 1
         }
 
+    }
+
+    override fun onClusterClick(cluster: Cluster<MarkerItem>): Boolean {
+
+        // Zoom in the cluster. Need to create LatLngBounds and including all the cluster items
+        // inside of bounds, then animate to center of the bounds.
+
+        // Create the builder to collect all essential cluster items for the bounds.
+        val builder = LatLngBounds.builder()
+        for (item in cluster.items) {
+            builder.include(item.position)
+        }
+        // Get the LatLngBounds
+        val bounds = builder.build()
+
+        // Animate camera to the bounds
+        try {
+            googleMap?.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return true
+    }
+
+    override fun onClusterItemClick(markerItem: MarkerItem?): Boolean {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
 }
