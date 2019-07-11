@@ -1,6 +1,12 @@
 package com.mlsdev.mapsappsample.markerclustering
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -8,8 +14,10 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.*
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import com.google.maps.android.clustering.view.DefaultClusterRenderer
@@ -19,10 +27,14 @@ import com.mlsdev.mapsappsample.R
 import com.mlsdev.mapsappsample.databinding.ActivityMarkerClusteringBinding
 import com.mlsdev.mapsappsample.databinding.LayoutMarkersClusterBinding
 import com.mlsdev.mapsappsample.utils.DrawableToBitmapDecoder
+import com.mlsdev.mapsappsample.utils.MapUtils
+import com.tbruyelle.rxpermissions.RxPermissions
+import kotlin.math.roundToInt
 
 class MarkerClusteringActivity :
         BaseActivity(),
         OnMapReadyCallback,
+        LocationListener,
         ClusterManager.OnClusterClickListener<MarkerItem>,
         ClusterManager.OnClusterItemClickListener<MarkerItem> {
 
@@ -31,6 +43,7 @@ class MarkerClusteringActivity :
     lateinit var clusterManager: ClusterManager<MarkerItem>
     lateinit var markerRenderer: PrimaryMarkerRenderer
     private var googleMap: GoogleMap? = null
+    private var lastLatLng: LatLng? = null
 
     private val markers = hashMapOf(
             MarkerItem.Type.HEALTHCARE_CENTER to R.drawable.ic_marker_healthcare_center,
@@ -67,8 +80,22 @@ class MarkerClusteringActivity :
             clusterManager.setOnClusterItemClickListener(this)
             it.setOnCameraIdleListener(clusterManager)
             it.setOnMarkerClickListener(clusterManager)
+            getLocationPermission()
             setupMarkers()
         }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getLocationPermission() {
+        RxPermissions.getInstance(this)
+                .request(Manifest.permission.ACCESS_FINE_LOCATION)
+                .subscribe { granted ->
+                    if (granted) {
+                        googleMap?.isMyLocationEnabled = true
+                        val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1L, 1f, this)
+                    }
+                }
     }
 
     private fun setupMarkers() {
@@ -87,7 +114,6 @@ class MarkerClusteringActivity :
 
         private val clusterIconGenerator = IconGenerator(applicationContext)
         private val clusterBinding = LayoutMarkersClusterBinding.inflate(layoutInflater)
-        var prevSelectedMarker: Marker? = null
         var prevSelectedItem: MarkerItem? = null
 
         override fun onBeforeClusterItemRendered(item: MarkerItem, markerOptions: MarkerOptions) {
@@ -134,8 +160,8 @@ class MarkerClusteringActivity :
 
     override fun onClusterItemClick(markerItem: MarkerItem?): Boolean {
 
-        val prevMarker = markerRenderer.prevSelectedMarker
         val prevItem = markerRenderer.prevSelectedItem
+        val prevMarker = markerRenderer.getMarker(prevItem)
 
         if (prevItem != null && prevMarker != null) {
             val drawableRes = markers[prevItem.type] ?: R.drawable.ic_marker
@@ -144,16 +170,39 @@ class MarkerClusteringActivity :
         }
 
         markerRenderer.getMarker(markerItem)?.let { marker ->
-            markerRenderer.prevSelectedMarker = marker
             markerRenderer.prevSelectedItem = markerItem
             val drawableRes = markersLarge[markerItem?.type] ?: R.drawable.ic_marker
             val bitmap = DrawableToBitmapDecoder.getBitmap(applicationContext, drawableRes)
             marker.setIcon(BitmapDescriptorFactory.fromBitmap(bitmap))
-        }
 
-        Snackbar.make(binding.root, markerItem?.type.toString(), Snackbar.LENGTH_SHORT).show()
+            lastLatLng?.let { currentLatLng ->
+
+                val distance = (MapUtils.CalculationByDistance(currentLatLng, LatLng(markerItem?.lat
+                        ?: 0.0, markerItem?.lng ?: 0.0)) * 100.0).roundToInt() / 100.0
+
+                AlertDialog.Builder(this)
+                        .setTitle("Marker info")
+                        .setMessage("${markerItem?.type} \n" +
+                                "Distance to your current location is $distance km")
+                        .setPositiveButton("Close", null)
+                        .create()
+                        .show()
+            }
+        }
 
         return true
     }
 
+    override fun onLocationChanged(location: Location?) {
+        location?.let { lastLatLng = LatLng(it.latitude, it.longitude) }
+    }
+
+    override fun onProviderDisabled(provider: String?) {
+    }
+
+    override fun onProviderEnabled(provider: String?) {
+    }
+
+    override fun onStatusChanged(provider: String?, p1: Int, p2: Bundle?) {
+    }
 }
