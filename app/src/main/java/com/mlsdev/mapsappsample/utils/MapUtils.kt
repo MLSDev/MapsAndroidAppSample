@@ -3,15 +3,11 @@ package com.mlsdev.mapsappsample.utils
 import android.util.Log
 import com.google.android.gms.maps.model.LatLng
 import java.text.DecimalFormat
-import kotlin.math.asin
-import kotlin.math.cos
-import kotlin.math.sin
-import kotlin.math.sqrt
-
+import kotlin.math.*
 
 object MapUtils {
 
-    fun CalculationByDistance(from: LatLng, to: LatLng): Double {
+    fun calculationByDistance(from: LatLng, to: LatLng): Double {
         val radius = 6371// radius of earth in Km
         val lat1 = from.latitude
         val lat2 = to.latitude
@@ -34,5 +30,8 @@ object MapUtils {
 
         return radius * c
     }
+
+    fun calculationByDistanceInKm(from: LatLng, to: LatLng): Double =
+            (calculationByDistance(from, to) * 100.0).roundToInt() / 100.0
 
 }

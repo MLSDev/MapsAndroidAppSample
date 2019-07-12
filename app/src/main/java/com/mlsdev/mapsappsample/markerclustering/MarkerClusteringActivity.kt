@@ -29,7 +29,6 @@ import com.mlsdev.mapsappsample.databinding.LayoutMarkersClusterBinding
 import com.mlsdev.mapsappsample.utils.DrawableToBitmapDecoder
 import com.mlsdev.mapsappsample.utils.MapUtils
 import com.tbruyelle.rxpermissions.RxPermissions
-import kotlin.math.roundToInt
 
 class MarkerClusteringActivity :
         BaseActivity(),
@@ -37,6 +36,10 @@ class MarkerClusteringActivity :
         LocationListener,
         ClusterManager.OnClusterClickListener<MarkerItem>,
         ClusterManager.OnClusterItemClickListener<MarkerItem> {
+
+    companion object {
+        const val MIN_CLUSTER_SIZE = 1
+    }
 
     lateinit var binding: ActivityMarkerClusteringBinding
     lateinit var viewModel: MarkerClusteringViewModel
@@ -130,7 +133,7 @@ class MarkerClusteringActivity :
         }
 
         override fun shouldRenderAsCluster(cluster: Cluster<MarkerItem>?): Boolean {
-            return cluster?.size ?: 0 > 1
+            return cluster?.size ?: 0 > MIN_CLUSTER_SIZE
         }
 
     }
@@ -159,7 +162,6 @@ class MarkerClusteringActivity :
     }
 
     override fun onClusterItemClick(markerItem: MarkerItem?): Boolean {
-
         val prevItem = markerRenderer.prevSelectedItem
         val prevMarker = markerRenderer.getMarker(prevItem)
 
@@ -174,23 +176,28 @@ class MarkerClusteringActivity :
             val drawableRes = markersLarge[markerItem?.type] ?: R.drawable.ic_marker
             val bitmap = DrawableToBitmapDecoder.getBitmap(applicationContext, drawableRes)
             marker.setIcon(BitmapDescriptorFactory.fromBitmap(bitmap))
-
-            lastLatLng?.let { currentLatLng ->
-
-                val distance = (MapUtils.CalculationByDistance(currentLatLng, LatLng(markerItem?.lat
-                        ?: 0.0, markerItem?.lng ?: 0.0)) * 100.0).roundToInt() / 100.0
-
-                AlertDialog.Builder(this)
-                        .setTitle("Marker info")
-                        .setMessage("${markerItem?.type} \n" +
-                                "Distance to your current location is $distance km")
-                        .setPositiveButton("Close", null)
-                        .create()
-                        .show()
-            }
         }
 
+        showMarkerInfoDialog(markerItem)
+
         return true
+    }
+
+    private fun showMarkerInfoDialog(markerItem: MarkerItem?) {
+        val currentLatLng = lastLatLng
+
+        if (currentLatLng != null && markerItem != null) {
+            val markerLatLng = LatLng(markerItem.lat, markerItem.lng)
+            val distance = MapUtils.calculationByDistanceInKm(currentLatLng, markerLatLng)
+            val message = getString(R.string.template_marker_info, markerItem.type.toString(), distance.toString())
+
+            AlertDialog.Builder(this)
+                    .setTitle(R.string.label_marker_info)
+                    .setMessage(message)
+                    .setPositiveButton(R.string.label_close, null)
+                    .create()
+                    .show()
+        }
     }
 
     override fun onLocationChanged(location: Location?) {

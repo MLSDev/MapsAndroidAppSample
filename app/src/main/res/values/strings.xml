@@ -23,6 +23,11 @@
     <string name="label_marker_clustering">Marker Clustering</string>
     <string name="label_markers_clustering">Markers Clustering</string>
 
+    <string name="template_marker_info">%1$s \nDistance to your current location is %2$s km</string>
+    <string name="label_marker_info">Marker info</string>
+    <string name="label_close">Close</string>
+    <string name="label_mlsdev_maps_sandbox">MLSDev maps sandbox</string>
+
     <string-array name="map_type_array">
         <item>roadmap</item>
         <item>satellite</item>

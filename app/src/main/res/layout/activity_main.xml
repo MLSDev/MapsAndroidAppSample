@@ -16,39 +16,55 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="50dp"
+            android:text="@string/label_mlsdev_maps_sandbox"
+            android:textColor="#242424"
+            android:textStyle="bold" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_pick_a_place"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:drawableStart="@mipmap/ic_map_marker"
+            android:drawableStart="@drawable/ic_pick_place"
             android:text="@string/btn_pick_a_place" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_open_map"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:drawableStart="@mipmap/ic_map"
+            android:drawableStart="@drawable/ic_map"
             android:text="@string/btn_open_map" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_static_image"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:drawableStart="@mipmap/ic_static_image"
+            android:drawableStart="@drawable/ic_static_image"
             android:text="@string/btn_static_image" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_place_suggestions"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:drawableStart="@mipmap/ic_place_suggestions"
+            android:drawableStart="@drawable/ic_place_suggestion"
             android:text="@string/btn_place_suggestions" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_cluster_markers"
+            android:drawableStart="@drawable/ic_markers_cluster"
+            android:paddingStart="12dp"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_cluster_markers"
+            android:paddingEnd="16dp"
             android:text="@string/label_marker_clustering" />
 
     </LinearLayout>
