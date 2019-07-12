@@ -2,7 +2,7 @@
 
 ## Description
 It is a sample app with basic google maps functionality.
-
+<img src="/screenshots/15.png" width="275"> <img src="/screenshots/16.png" width="275">
 <img src="/screenshots/1.png" width="275"> <img src="/screenshots/2.png" width="275">
 <img src="/screenshots/3.png" width="275">
 <img src="/screenshots/4.png" width="275">
